@@ -113,6 +113,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                       height: 10,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                         onChanged: (v) {
                           setY(v);
                         },

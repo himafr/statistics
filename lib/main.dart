@@ -15,9 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       title: "hema sallem",
-      theme: ThemeData.dark()
-      .copyWith(scaffoldBackgroundColor: Color(0xff060604),
-      primaryColor: Color(0xff060604)),
+      theme: ThemeData.dark(      )
+      .copyWith(
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(fontFamily: "RubikWetPaint"),),
+
+        scaffoldBackgroundColor: Color(0xff060604),
+      primaryColor: Color(0xff060604),
+      ),
+
       initialRoute: "/",
       routes: {
         "/":(context) => MyHomePage(),

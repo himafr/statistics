@@ -93,7 +93,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       keyboardType: TextInputType.number,
                       onChanged: (v){setX(v);},
                         decoration: InputDecoration(
-                      labelText: 'Enter your text',
+                      labelText: 'Enter your numbers',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16)),
                     )),
@@ -110,9 +110,10 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       height: 10,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       onChanged: (v){setY(v);},
                         decoration: InputDecoration(
-                      labelText: 'Enter your text',
+                      labelText: 'Enter your numbers',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16)),
                     )),
