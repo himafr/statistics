@@ -17,8 +17,8 @@ class UnclassifiedData extends StatefulWidget {
 }
 
 class _UnclassifiedDataState extends State<UnclassifiedData> {
-  late List<double> _x;
-  late List<int> _y;
+   List<double> _x=[];
+   List<int> _y=[];
   List<Widget> x = [];
   List<Widget> y = [];
   void nav({required String route, arg}) {
@@ -51,6 +51,27 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
     });
   }
 
+bool check(int x){
+    if(x==1){
+      if(_x.isEmpty){
+        showAlertDialog(
+                          context, ["Please enter your values"]);
+        return true;
+      }
+      return false;
+    }
+    else if(x==2){
+      if(_y.isEmpty){
+        showAlertDialog(
+                          context, ["Please enter your values"]);
+        return true;
+      }
+      return false;
+      }
+      else{
+      return true;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -134,6 +155,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: "المتوسط , الوسط",
                     onPress: () {
+                  if(check(1))return;
                       XDashUnclassified result = XDashUnclassified(nums: _x);
                       showAlertDialog(
                           context, ["X Dash  ${result.getXDash()}"]);
@@ -148,6 +170,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: "المتوسط , الوسط مع وجود تكرار",
                     onPress: () {
+                  if(check(2))return;
                       XDashUnclassified result =
                           XDashUnclassified(nums: _x, fi: _y);
                       showAlertDialog(
@@ -163,6 +186,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: " الوسط المرجح",
                     onPress: () {
+                  if(check(2))return;
                       XDashUnclassified result =
                           XDashUnclassified(nums: _x, fi: _y);
                       showAlertDialog(
@@ -178,6 +202,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: "الوسيط",
                     onPress: () {
+                  if(check(1))return;
                       Median result = Median(nums: _x);
                       showAlertDialog(context, ["Median  ${result.getMed()}"]);
                     }),
@@ -192,6 +217,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: "الانحراف المعياري  ",
                     onPress: () {
+                  if(check(1))return;
                       SDUnclassified result = SDUnclassified(xi: _x);
                       showAlertDialog(context, ["SD  ${result.getSD()}"]);
                     }),
@@ -205,6 +231,7 @@ class _UnclassifiedDataState extends State<UnclassifiedData> {
                 LinearButton(
                     text: " نصف المدي الربيعي",
                     onPress: () {
+                  if(check(1))return;
                       RangeUnclassified result = RangeUnclassified(
                         nums: _x,
                       );

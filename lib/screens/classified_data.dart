@@ -17,12 +17,31 @@ class ClassifiedData extends StatefulWidget {
 }
 
 class _ClassifiedDataState extends State<ClassifiedData> {
-  late List<double> _x;
-  late List<int> _y;
+   List<double> _x=[];
+   List<int> _y=[];
   List<Widget> x = [];
   List<Widget> y = [];
     void nav({required String route,arg}){
     Navigator.pushNamed(context, route,arguments:arg );
+  }
+  bool check(int x){
+    if(x==1){
+      if(_x.isEmpty){
+        SnackBar(content: Text('Please input data.'));
+        return true;
+      }
+      return false;
+    }
+    else if(x==2){
+      if(_y.isEmpty){
+        SnackBar(content: Text('Please input data.'));
+        return true;
+      }
+      return false;
+      }
+      else{
+      return true;
+    }
   }
     void setX(String field1) {
     setState((){
@@ -110,6 +129,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       height: 10,
                     ),
                     TextFormField(
+                     
                       keyboardType: TextInputType.number,
                       onChanged: (v){setY(v);},
                         decoration: InputDecoration(
@@ -127,6 +147,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       indent: 30.0,
                     )),
                 LinearButton(text: "المتوسط , الوسط", onPress: () {
+                  if(check(2))return;
                   XDashClassified result =XDashClassified(nums: _x,fi: _y);
                   showAlertDialog(context, ["Xdash  ${result.getXDash()}"]);
                 }),
@@ -138,6 +159,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       indent: 30.0,
                     )),
                 LinearButton(text: "الوسيط", onPress: () {
+                  if(check(2))return;
                  MedianClassified result =MedianClassified(nums: _x,f: _y,q: 4);
                   showAlertDialog(context, ["Q1  ${result.getMed(q: 1)}","Q2  ${result.getMed(q: 2)}","Q3  ${result.getMed(q: 3)}"]);
                 }),
@@ -149,6 +171,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       indent: 30.0,
                     )),
                 LinearButton(text: "المنوال ", onPress: () {
+                  if(check(2))return;
                    ModeClassified result =ModeClassified(nums: _x,f: _y);
                   showAlertDialog(context, ["Mode  ${result.getMode()}"]);
                 }),
@@ -160,6 +183,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       indent: 30.0,
                     )),
                 LinearButton(text: "الانحراف المعياري  ", onPress: () {
+                  if(check(2))return;
                    SDClassified result =SDClassified(xi: _x,fi: _y);
                   showAlertDialog(context, ["SD  ${result.getSD()}"]);
                 }),
@@ -171,6 +195,7 @@ class _ClassifiedDataState extends State<ClassifiedData> {
                       indent: 30.0,
                     )),
                 LinearButton(text: " المدي", onPress: () {
+                  if(check(2))return;
                    RangeClassified result =RangeClassified(nums: _x,);
                    SemiRangeClassified result2 =SemiRangeClassified(n: _x,f: _y);
                   showAlertDialog(context, ["Normal Range  ${result.getRange()}","Semi Range  ${result2.getSemiRange()}"]);
